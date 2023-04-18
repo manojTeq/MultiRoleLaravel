@@ -21,7 +21,9 @@
                                     {{$role->name}}
                                 </div>
                             </td>                             
-                            <td>edit</td>                            
+                            <td><a href="{{ route('admin.roles.edit', $role->id) }}" class="px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white rounded-md">edit</a></td>  
+                                                      
+
                             <td>delete</td>                            
                         </tr>
                         @endforeach
