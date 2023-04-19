@@ -22,9 +22,13 @@
                             </td>                           
                             <td>                                 
                                 <div class="flex justify-end">
-                                    <div class="space-x-2">
+                                    <div class="flex space-x-2">
                                         <a href="{{ route('admin.permissions.edit', $permission->id) }}" class="px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white rounded-md">edit</a>
-                                        <a href="delete" class="px-4 py-2 bg-red-500 hover:bg-red-700 text-white rounded-md">delete</a>      
+                                        <form class="px-4 py-2 bg-red-500 hover:bg-red-700 text-white rounded-md" method="POST" action="{{ route('admin.permissions.destroy', $permission->id) }}" onsubmit="return confirm('Are you sure?');">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit">Delete</button>       
+                                        </form>
                                     </div>                              
                                 </div>                                
                             </td>                                                                               
