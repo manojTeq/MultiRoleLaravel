@@ -14,7 +14,14 @@ class UserController extends Controller
     {
         $users = User::all();
 
-        return view('admin.users.index', compact('users'));
+        return view('admin.users.index', compact('users'));        
+    }
+
+    public function up()
+    {
+        $users = User::all();
+        // dd($users);
+        return view('admin.users.up', compact('users'));        
     }
 
     public function show(User $user)
@@ -69,6 +76,7 @@ class UserController extends Controller
         if($user->hasRole('admin')){
             return back()->with('message', 'you are admin.');
         }
+        // dd($user->id);
         $user->delete();
 
         return back()->with('message', 'User deleted.');

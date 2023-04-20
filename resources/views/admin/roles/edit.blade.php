@@ -64,7 +64,6 @@
                                         </select>
                                         @error('name') <span class="text-red-400 text-sm">{{ $message }}</span> @enderror
                                     </div>
-
                                     <!-- <div class="sm:col-span-6 pt-5"> -->
                                     <button type="submit" class="px-4 py-2 bg-green-500 hover:bg-green-700 rounded-md">Assign</button>
                                     <!-- </div> -->

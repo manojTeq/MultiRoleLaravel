@@ -61,7 +61,7 @@
                         action="{{ route('admin.users.permissions.revoke', [$user->id, $user_permission->id]) }}" onsubmit="return confirm('Are you sure?');">
                         @csrf
                         @method('DELETE')
-                        <button type="submit">{{ $user_permission->name }}</button>
+                        <button type="submit">{{ $user_permission->name }}</button>                        
                         </form>
                     @endforeach
                     @endif

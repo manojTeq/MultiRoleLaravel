@@ -1,4 +1,4 @@
-<x-admin-layout>
+<x-user-layout>
 
     <div class="py-12 w-full">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -30,7 +30,7 @@
                                     <a href="{{ route('admin.users.show', $user->id) }}" class="px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white rounded-md">Roles</a>
                                     
                                     <!-- <a href="" class="px-4 py-2 bg-red-500 hover:bg-red-700 text-white rounded-md">Delete</a> -->
-                                    <form class="px-4 py-2 bg-red-500 hover:bg-red-700 text-white rounded-md" method="POST" action="{{ route('admin.users.destroy', $user->id) }}" onsubmit="return confirm('Are you sure?');">                                    
+                                    <form class="px-4 py-2 bg-red-500 hover:bg-red-700 text-white rounded-md" method="POST" action="{{ route('admin.users.destroy', $user->id) }}" onsubmit="return confirm('Are you sure?');">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit">Delete</button>
@@ -44,4 +44,4 @@
             </div>
         </div>
     </div>
-</x-admin-layout>
+</x-user-layout>

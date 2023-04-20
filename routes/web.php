@@ -44,5 +44,9 @@ Route::middleware(['auth', 'role:admin'])->name('admin.')->prefix('admin')->grou
 // Route::get('/admin', function () {
 //     return view('admin.index');
 // })->middleware(['auth', 'role:admin'])->name('admin.index');
+Route::get('/users_list', [UserController::class, 'up'])->name('users.up');
+// Route::delete('/users/id', [UserController::class, 'destroy'])->middleware(['auth', 'role:user'])->name('users.destroy');
+// Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
+
 
 require __DIR__ . '/auth.php';

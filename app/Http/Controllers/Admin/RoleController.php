@@ -23,15 +23,17 @@ class RoleController extends Controller
 
     public function store(Request $request)
     {
-        $validated = $request->validate(['name' => ['required', 'min:3']]);
-        Role::create($validated);
-
+        // $validated = $request->validate(['name' => ['required', 'min:3']]);
+        // Role::create($validated);
+        $role = Role::create(['name' =>$request->input('name'), 'guard_name' => 'web']);
+        $role->syncPermissions($request->input('permission'));
         return redirect()->route('admin.roles.index')->with('message', 'Role Created succesfully.');
+        
     }
 
     public function edit(Role $role)
     {
-        $permissions = Permission::all();
+        $permissions = Permission::all();        
         return view('admin.roles.edit', compact('role', 'permissions'));
     }
 
@@ -54,7 +56,8 @@ class RoleController extends Controller
         if($role->hasPermissionTo($request->permission)){
             return back()->with('message', 'Permission exists.');
         }  
-        $role->givePermissionTo($request->permission);      
+        
+        $role->givePermissionTo($request->permission);                   
         return back()->with('message', 'Permission added.');
 
     }
