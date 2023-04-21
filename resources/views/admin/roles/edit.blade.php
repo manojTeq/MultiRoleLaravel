@@ -48,7 +48,7 @@
                     @endforeach
                     @endif
                 </div>
-                <div class="max-w-xl">
+                <div class="">
                     <form method="POST" action="{{ route('admin.roles.permissions', $role->id) }}">
                         @csrf                        
                         <div class="space-y-12">
@@ -57,10 +57,11 @@
                                 <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                                     <div class="sm:col-span-3">
                                         <label for="permission" class="block text-sm font-medium text-gray-700">Permission</label>
-                                        <select name="permission" id="permission" autocomplete="permission-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                                            @foreach ($permissions as $permission)
-                                                <option value="{{ $permission->name }}">{{ $permission->name }}</option>
-                                            @endforeach
+                                        <!-- <select name="permission" id="permission" autocomplete="permission-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"> -->
+                                        @foreach($permission as $user)
+                               
+                               <label><input type="checkbox" name="permission[]"   class="w-4 h-4 text-teal-600 bg-gray-100 border-gray-300 rounded focus:ring-teal-500 dark:focus:ring-teal-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" value="{{$user->id}}"@foreach ($rolePermissions as $per) @if($per->permission_id == $user->id)checked @endif @endforeach>{{$user->name }}</label>
+                               @endforeach
                                         </select>
                                         @error('name') <span class="text-red-400 text-sm">{{ $message }}</span> @enderror
                                     </div>
