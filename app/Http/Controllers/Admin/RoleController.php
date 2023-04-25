@@ -13,6 +13,7 @@ class RoleController extends Controller
     public function index()
     {
         $roles = Role::all();   
+        // dd($roles[0]->name);
         // $roles = Role::whereNotIn('name', ['admin'])->get();
         return view('admin.roles.index', compact('roles'));
     }
@@ -46,8 +47,7 @@ class RoleController extends Controller
             ->join('roles','role_has_permissions.role_id','=','roles.id')
             ->where("role_has_permissions.role_id", $role['id'])            
             ->get();
-        }
-                
+        }                
 
         $permissions = Permission::all();        
         return view('admin.roles.edit', compact('role', 'rolePermissions','permission','permissions'));
@@ -56,6 +56,7 @@ class RoleController extends Controller
     public function update(Request $request, Role $role)
     {
         $validated = $request->validate(['name' => ['required', 'min:3']]);
+        dd($validated);
         $role->update($validated);
         return redirect()->route('admin.roles.index')->with('message', 'Role Updated succesfully.');
     }

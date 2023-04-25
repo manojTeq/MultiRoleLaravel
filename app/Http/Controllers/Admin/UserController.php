@@ -20,8 +20,14 @@ class UserController extends Controller
     public function up()
     {
         $users = User::all();
-        // dd($users);
-        return view('admin.users.up', compact('users'));        
+        $role = Role::all();        
+        return view('admin.users.up', compact('users', 'role'));        
+    }
+
+    public function edit(Permission $permission)
+    {
+        $roles = Role::all();
+        return view('admin.permissions.edit', compact('permission', 'roles'));
     }
 
     public function show(User $user)
@@ -73,6 +79,7 @@ class UserController extends Controller
 
     public function destroy(User $user)
     {
+        
         if($user->hasRole('admin')){
             return back()->with('message', 'you are admin.');
         }
